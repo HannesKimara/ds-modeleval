@@ -81,7 +81,7 @@ MODEL_LIST = [
     "Qwen/Qwen3-Next-80B-A3B-Thinking"
 ]
 
-st.set_page_config(page_title="Divergent-GPFree", layout="centered")
+st.set_page_config(page_title="Divergent Model Evaluator", layout="centered")
 
 st.markdown(
     """
