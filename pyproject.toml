@@ -5,6 +5,7 @@ description = "Manual model evaluation for divergent space"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "huggingface-hub>=0.35.0",
     "openai>=1.107.3",
     "pillow>=11.3.0",
     "python-dotenv>=1.1.1",

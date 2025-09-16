@@ -6,7 +6,7 @@ import streamlit as st
 from PIL import Image
 from openai import OpenAI
 from dotenv import load_dotenv
-import requests
+from huggingface_hub import InferenceClient
 
 load_dotenv()
 
@@ -17,15 +17,15 @@ def encode_image_to_base64(image):
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
 
 def model_infer(text, image, model_name):
-    client = OpenAI(
-        base_url="https://router.huggingface.co/v1",
+    client = InferenceClient(
+        provider="hyperbolic",
         api_key=os.getenv("HF_KEY"),
     )
 
     base64_image = encode_image_to_base64(image)
 
     completion = client.chat.completions.create(
-        model=f"Qwen/Qwen2.5-VL-7B-Instruct:hyperbolic:hyperbolic",
+        model=model_name,
         messages=[
             {
                 "role": "user",
@@ -49,6 +49,7 @@ def model_infer(text, image, model_name):
 
 # List of available models
 MODEL_LIST = [
+    "Qwen/Qwen2.5-VL-7B-Instruct",
     "Qwen/Qwen2.5-72B-Instruct",
     "Qwen/Qwen2.5-VL-72B-Instruct",
     "deepseek-ai/DeepSeek-V3-0324",
@@ -62,7 +63,6 @@ MODEL_LIST = [
     "deepseek-ai/DeepSeek-R1",
     "moonshotai/Kimi-K2-Instruct",
     "meta-llama/Meta-Llama-3-70B-Instruct",
-    "Qwen/Qwen2.5-VL-7B-Instruct",
     "Qwen/Qwen3-235B-A22B",
     "meta-llama/Meta-Llama-3.1-405B-Instruct",
     "Qwen/QwQ-32B",
