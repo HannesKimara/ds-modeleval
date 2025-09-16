@@ -128,7 +128,7 @@ if "history" not in st.session_state:
 
 # Center the title using markdown and HTML
 st.markdown(
-    "<h1 style='text-align: center;'>Divergent-GPFree</h1>",
+    "<h1 style='text-align: center;'>Divergent Model Evaluator</h1>",
     unsafe_allow_html=True,
 )
 
