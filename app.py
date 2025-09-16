@@ -157,24 +157,4 @@ if submitted and user_input and uploaded_image:
         {"user": user_input, "image": image.copy(), "model": selected_model, "response": response}
     )
     # After first response, rerun to show input at bottom
-    st.experimental_rerun()
-
-# Center and pin input box to bottom after first response
-if len(st.session_state.history) > 0:
-    st.markdown(
-        """
-        <style>
-        .stForm {
-            position: fixed !important;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50vw;
-            z-index: 100;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # st.experimental_rerun()
