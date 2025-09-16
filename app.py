@@ -81,6 +81,27 @@ MODEL_LIST = [
     "Qwen/Qwen3-Next-80B-A3B-Thinking"
 ]
 
+# Sidebar for Huggingface API key input
+with st.sidebar:
+    st.header("Configuration")
+    hf_key = st.text_input(
+        "Huggingface API Key",
+        type="password",
+        value=os.getenv("HF_KEY") or st.session_state.get("hf_key", ""),
+        help="Paste your Huggingface Inference API key here.",
+    )
+    if hf_key:
+        st.session_state["hf_key"] = hf_key
+        os.environ["HF_KEY"] = hf_key
+    st.markdown(
+        """
+        <small>
+        Your API key is only stored in your session and never sent anywhere except to Huggingface.
+        </small>
+        """,
+        unsafe_allow_html=True,
+    )
+
 st.set_page_config(page_title="Divergent Model Evaluator", layout="centered")
 
 st.markdown(
